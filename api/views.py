@@ -1,17 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from packages.models import Package, Vulnerability
-from .serializers import PackageSerializer, VulnerabilitySerializer
+from packages.models import Package
+from .serializers import PackageSerializer
 import requests
-import json
-
-
-# @api_view(['GET'])
-# def get_package_all(request):
-
-#     package = Package.objects.all()
-#     serializer = PackageSerializer(package, many=True)
-#     return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -21,22 +12,6 @@ def get_package_detail(request, **kwargs):
         name=kwargs['name'], version=kwargs['version'])
     serializer = PackageSerializer(package)
     return Response(serializer.data)
-
-
-# @api_view(['GET'])
-# def get_vulnerability_all(request):
-
-#     vulnerabilities = Vulnerability.objects.all()
-#     serializer = VulnerabilitySerializer(vulnerabilities, many=True)
-#     return Response(serializer.data)
-
-
-# @api_view(['GET'])
-# def get_vulnerability_detail(request, **kwargs):
-
-#     vulnerabilities = Vulnerability.objects.get(id=kwargs['id'])
-#     serializer = VulnerabilitySerializer(vulnerabilities)
-#     return Response(serializer.data)
 
 
 @api_view(['GET'])
